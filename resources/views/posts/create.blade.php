@@ -1,6 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
 
 <!DOCTYPE html>
 <html>
@@ -10,28 +8,56 @@
 
 </head>
 <body>
-<div class="container">
-  <div class="box" style="margin-top: 10%;">
-    <p class="title">CREATE PROJECT</p>
+@extends('layouts.app')
 
-	<form method="POST" action="/posts">
-		{{csrf_field()}}
-	<div class="field">
-  <label class="label">Title</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Text input" name = "title">
-  </div>
-  <div class="field">
-  <label class="label">Description</label>
-  <div class="control">
-    <input name="description" class="input" type="text" placeholder="Text input">
-  </div>
-  <div class="control">
-  <button class="button is-primary" type="Submit" style="margin-top: 20px;">Submit</button>
+@section('content')
+
+
+
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="margin-top:20%;">
+                <div class="card-header">{{ __('Create Post') }}</div>
+
+                <div class="card-body">
+                <form method="POST" action="/posts">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="title" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea  type="textarea" class="form-control" name="description"  required autocomplete></textarea>
+
+                              
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Submit') }}
+                                </button>
+                            </div>
+                        </div>
+
+                                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</form>
+
 </body>
 </html>
 @endsection
